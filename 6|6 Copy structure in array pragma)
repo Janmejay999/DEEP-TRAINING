@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#pragma pack(1)
+struct Person
+{
+	char name[9];
+	int age;
+}s;
+
+int main()
+{
+	//structure variable declaratio with initialisation
+	struct Person person={"Janmejaya"};
+	//declare character buffer (byte array)
+	unsigned char *buffer=(char*)malloc(sizeof(person));
+	int i;
+	
+	//copying....
+	memcpy(buffer,(const unsigned char*)&person,sizeof(person));
+	
+	//printing..
+	printf("Copied byte array is:\n");
+	for(i=0;i<sizeof(person);i++)
+		printf("%d ",buffer[i]);
+	printf("\n");
+	printf("size of structure = %d",sizeof(person));
+	
+	//freeing memory..
+	free(buffer);
+	return 0;
+}
